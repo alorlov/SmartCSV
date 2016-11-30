@@ -1,0 +1,42 @@
+{
+
+  "bugs": {
+    "url": "https://github.com/suda/smartcsv/issues"
+  },
+  "consumedServices": {
+    "status-bar": {
+      "versions": {
+        "^1.0.0": "consumeStatusBar"
+      }
+    },
+    "tablr-models": {
+        "versions": {
+          "1.0.0": "consumeTablrModelsServiceV1"
+        }
+      }
+    },
+"dependencies": {
+    "atom-space-pen-views": "^2.0.0",
+    "q": "^1.0.1",
+    "underscore-plus": "^1.0.0",
+    "underscore.string": "*",
+    "xml-to-js": "*"
+  },
+  "description": "Code navigation panel for Coffee Script",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">=0.186.0 <2.0.0"
+  },
+  "homepage": "https://github.com/alorlov/smartcsv#readme",
+  "license": "MIT",
+  "main": "./lib/smartcsv",
+  "name": "smartcsv",
+  "optionalDependencies": {},
+  "readme": "# Coffee Navigator\n\n![Usage](http://cl.ly/image/1H1I472L0I2U/cn.gif)\n\nCode navigation panel for Coffee Script, alternative to `Symbols View: Toggle File Symbols`/`CMD+R`.\n\n# Usage\n\n* Use command palette and search for `Coffee Navigator: Toggle`\n\nor\n\n* `Ctrl-Alt-N`\n\nto toggle navigator.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alorlov/smartcsv.git"
+  },
+  "version": "0.0.18"
+}

@@ -4,7 +4,7 @@ module.exports =
 class CellView extends HTMLElement
   initialize: (@cell) ->
     @subscriptions = new CompositeDisposable()
-    @subscriptions.add @cell.onDidDestroy => @subscriptions.dispose()
+    #@subscriptions.add @cell.onDidDestroy => @subscriptions.dispose()
 
     #@draggable = true
 
@@ -19,4 +19,6 @@ class CellView extends HTMLElement
   getCell: ->
     @row
 
-module.exports = document.registerElement('runner-view-cell', prototype: CellView.prototype, extends: 'li')
+
+
+module.exports = document.registerElement('smartcsv-view-cell', prototype: CellView.prototype, extends: 'li')

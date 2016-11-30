@@ -2,4 +2,4 @@
 CellView = require './cell-view'
 
 module.exports =
-class CheckCellView extends CellView ->
+class CheckCellView extends CellView

@@ -5,4 +5,4 @@ path = require 'path'
 Cell = require './cell'
 
 module.exports =
-class CheckCell extends Cell ->
+class CheckCell extends Cell

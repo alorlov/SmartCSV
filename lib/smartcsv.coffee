@@ -1,13 +1,13 @@
 [_, url, CompositeDisposable, Range, Table, DisplayTable, TableEditor, Selection, TableElement, TableSelectionElement, CSVConfig, CSVEditor, CSVEditorElement] = []
 ReportView = require './report-view'
+Runner = require './runner'
+ControlPanelView = require './control-panel-view'
+controlView = null
 
-module.exports =
-  config:
-    showOnRightSide:
-      type: 'boolean'
-      default: true
+module.exports = Smartcsv =
 
-  coffeeNavigatorView: null
+  reportView: null
+  controlView: null
 
   activate: (state) ->
     CompositeDisposable ?= require('atom').CompositeDisposable
@@ -15,17 +15,11 @@ module.exports =
 
     #@csvConfig = new CSVConfig(csvConfig)
     @subscriptions = new CompositeDisposable
-
-    Report = require './report'
-    report = new Report
-    #object = report.getObject()
-
-    @coffeeNavigatorView = new ReportView \
-      state.coffeeNavigatorViewState
+    @reportView = new ReportView state.reportViewState
+    controlView = new ControlPanelView(new Runner(@reportView))
 
     @subscriptions.add atom.workspace.addOpener (uriToOpen) =>
-      console.log(uriToOpen)
-      extensions = atom.config.get('smartcsv.supportedCsvExtensions') ? ['csv', 'tsv', 'CSV', 'TSV']
+      extensions = atom.config.get('tablr.supportedCsvExtensions') ? ['csv', 'tsv', 'CSV', 'TSV']
 
       return unless ///\.(#{extensions.join('|')})$///.test uriToOpen
 
@@ -36,50 +30,32 @@ module.exports =
       options = {}
       choice = "TableEditor"
       csvEditor = new CSVEditor({filePath: uriToOpen, options, choice})
+      @reportView.setModel(csvEditor)
+
       console.log csvEditor
-      #csvEditor.editor.deleteRowAtCursor()
+      console.log @reportView
+      csvEditor
 
   deactivate: ->
-    @coffeeNavigatorView.destroy()
+    @reportView.destroy()
 
   serialize: ->
-    coffeeNavigatorViewState: @coffeeNavigatorView.serialize()
-
+    reportViewState: @reportView.serialize()
 
   consumeStatusBar: (statusBar) =>
-    my = document.createElement('div')
-    my.textContent = 'Run2'
-    my.style.float = 'right'
-    my.className = 'run-all'
-    @statusBarTile = statusBar.addLeftTile(item: my, priority: 100)
-    console.log(statusBar.getLeftTiles())
+    console.log @reportView
+    console.log controlView
+    controlView.consumeStatusBar(statusBar)
 
   consumeTablrModelsServiceV1: (api) =>
     {Table, DisplayTable, TableEditor, Range, CSVEditor} = api
     console.log api
 
-  getSmallTable: (api) ->
-    {Table, DisplayTable, Editor, Range} = api
-    Editor ?= require './table-editor'
+    #require './smartcsv-table-editor'
 
-    table = new Editor
+    TableEditor::deleteRowAtCursor = ->
+        {row} = @getCursorPosition()
+        @removeScreenRowAt @screenRowToModelRow(row)
+        console.log 'Its the smartcsv deleteRowAtCursor!'
 
-    table.lockModifiedStatus()
-    table.addColumn 'key', width: 150, align: 'right'
-    table.addColumn 'value', width: 150, align: 'center'
-    table.addColumn 'locked', width: 150, align: 'left'
-
-    rows = []
-    for i in [0...100]
-      rows.push [
-        "row#{i}"
-        Math.random() * 100
-        if i % 2 is 0 then 'yes' else 'no'
-      ]
-
-    table.addRows(rows)
-
-    table.clearUndoStack()
-    table.initializeAfterSetup()
-    table.unlockModifiedStatus()
-    return table
+    return

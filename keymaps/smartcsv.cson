@@ -9,3 +9,4 @@
 # https://atom.io/docs/latest/advanced/keymaps
 'atom-workspace':
   'cmd-alt-n': 'smartcsv:toggle'
+  'f5' : 'smartcsv:run-from'

@@ -4,9 +4,11 @@ ResizableView = require './resizable-view'
 TagGenerator = require './tag-generator'
 {$, View} = require 'atom-space-pen-views'
 # models
+Cell = require './cell'
 ClickCell = require './click-cell'
 CheckCell = require './check-cell'
 # views
+CellView = require './cell-view'
 ClickCellView = require './click-cell-view'
 CheckCellView = require './check-cell-view'
 
@@ -14,32 +16,38 @@ module.exports =
 class ReportView extends ResizableView
 
   @innerContent: ->
-    @div id: 'runner', class: 'padded', =>
+    @div id: 'smartcsv', class: 'padded', =>
       @div outlet: 'list'
 
   initialize: (serializeState) ->
     super serializeState
 
     @roots = []
+    @firstRow = null
 
-    atom.config.onDidChange 'runner.showOnRightSide', ({newValue}) =>
+    #@showOnRightSide = atom.config.get('coff.showOnRightSide')
+    atom.config.onDidChange 'smartcsv.showOnRightSide', ({newValue}) =>
       @onSideToggled(newValue)
 
-    atom.commands.add 'atom-workspace', 'runner:toggle', => @toggle()
-    atom.workspace.onDidChangeActivePaneItem (item) =>
-      console.log('pane is changed')
+    atom.commands.add 'atom-workspace', 'smartcsv:toggle', => @toggle()
 
+    activePane = atom.workspace.getActivePane()
+    @setModel activePane.activeItem if activePane
+    atom.workspace.onDidChangeActivePaneItem (item) =>
+      @setModel activePane.activeItem
+      console.log item
+      activePane.activeItem
+
+    return
     @visible = localStorage.getItem('coffeeNavigatorStatus') == 'true'
     if @visible
       @show()
-
-    @update()
 
   serialize: ->
 
   destroy: ->
     @detach()
-    @fileWatcher?.dispose()
+    #@fileWatcher?.dispose()
 
   toggle: ->
     if @isVisible()
@@ -57,7 +65,7 @@ class ReportView extends ResizableView
     return if _.isEmpty(atom.project.getPaths())
 
     @panel ?=
-      if atom.config.get('runner.showOnRightSide')
+      if atom.config.get('smartcsv.showOnRightSide')
         atom.workspace.addRightPanel(item: this)
       else
         atom.workspace.addLeftPanel(item: this)
@@ -70,7 +78,9 @@ class ReportView extends ResizableView
     @on 'dblclick', '.tree-view-resize-handle', =>
       @resizeToFitContent()
     @on 'click', '.entry', (e) =>
-
+      console.log e
+      console.log @csvEditor
+      #@csvEditor.editor.deleteRowAtCursor()
       # This prevents accidental collapsing when a .entries element is the event target
       return if e.target.classList.contains('entries')
 
@@ -78,6 +88,8 @@ class ReportView extends ResizableView
 
   entryClicked: (e) ->
     entry = e.currentTarget
+    cell = entry.cell
+    @setCursorAtPosition([cell.row, @getWorkColumn(cell.column)])
 
     false
 
@@ -85,27 +97,60 @@ class ReportView extends ResizableView
     alert('onSideToggled')
 
   getPath: ->
-    # Get path for currently edited file
-    atom.workspace.getActiveTextEditor()?.getPath()
+    @csvEditor.getPath().replace /\\/g, '/'
 
-  update: ->
+  getName: ->
+    path = @getPath()
+    dir = atom.config.get('smartcsv.scenariosDir')
+    name = path.slice path.lastIndexOf(dir) + dir.length
+    name = name.replace /^\//, ''
+    name.substr(0, name.lastIndexOf('.'))
 
-    Report = require './report'
-    report = new Report
-    object = report.getObject('D:\\Projects\\Work\\elite\\logs\\reports\\100.xml')
-    console.log object
-    @roots = for item of object
-      params = item
-      switch item.type
-        when 'click' then cell = new ClickCell(params); view = new ClickCellView()
-        else cell = new ClickCell(params); view = new ClickCellView()
+  getHumanName: ->
+    @getName.replace '/', '-'
+
+  updateRows: (object) ->
+    #CompositeDisposable = require('atom').CompositeDisposable
+    #@subscriptions = new CompositeDisposable
+    #@subscriptions.add @csvEditor.editor.onDidChangeCursorPosition({newPosition, oldPosition}) =>
+    #  alert(33)
+
+    @roots = for params in object
+      switch params.type
+        when 'click' then cell = new Cell(params); view = new CellView()
+        else cell = new Cell(params); view = new CellView()
 
       view.initialize(cell)
       @list[0].appendChild(view)
-      view
+    view
 
-    return
-    Report = require './report'
-    report = new Report
-    @list.append report.getObject()
-    @list.append report.getObject()
+  setModel: (@csvEditor) ->
+
+  splitRangesToRows:  ->
+    ranges = @csvEditor.editor.getSelectedRanges()
+    firstRow = @getFirstRow()
+    rows = {}
+    for range in ranges
+      for row in [range.start.row...range.end.row]
+        rows[row] = [] unless rows[row]?
+        for column in [range.start.column...range.end.column]
+          rows[row].push(firstRow[column]) unless rows[row][column]?
+    console.log rows
+    rows
+
+  getFirstRow: ->
+    row = _.clone @csvEditor.editor.table.getFirstRow()
+    nextColName = 1
+    for i in [0..row.length]
+      name = row[i]
+      if !isNaN(name * 1)
+        row[i] = nextColName++
+    row
+
+  getWorkColumn: (column) ->
+    @firstRow ?= @getFirstRow()
+    console.log {@firstRow, column}
+    @firstRow.indexOf(column)
+
+  setCursorAtPosition: (position) ->
+    @csvEditor.editor.setCursorAtPosition(position)

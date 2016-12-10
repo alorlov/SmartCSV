@@ -1,7 +1,10 @@
 {CompositeDisposable} = require 'event-kit'
 {$, View} = require 'atom-space-pen-views'
 _ = require 'underscore-plus'
-
+ButtonControl = require './button-control'
+ButtonControlView = require './button-control-view'
+Cell = require './cell'
+CellView = require './cell-view'
 module.exports =
 class ControlPanelView extends View
   panel: null
@@ -11,9 +14,18 @@ class ControlPanelView extends View
       @div outlet: 'row'
 
   initialize: (@runner) ->
+    button = new ButtonControl({type: 'selected'})
+    view = new ButtonControlView()
+    view.initialize(button)
+    @row[0].appendChild(view)
+
+    @subscriptions = new CompositeDisposable()
+    @subscriptions.add @runner.onDidStart => view.toggle()
+    @subscriptions.add @runner.onDidStop => view.toggle()
+
     @handleEvents()
     @show()
-    @update()
+    #@update()
 
   show: ->
     @attach()
@@ -33,8 +45,11 @@ class ControlPanelView extends View
 
       @entryClicked(e) unless e.shiftKey or e.metaKey or e.ctrlKey
 
-    atom.commands.add 'smartcsv-control-panel',
-     'smartcsv:run-from': => @runFrom()
+    atom.commands.add 'tablr-editor',
+     'smartcsv:run-from': => @toggleRunSelected()
+
+    #atom.commands.add 'smartcsv-control-panel',
+    # 'smartcsv:run-from': => @runFrom()
 
   setModel: (@runner) ->
 
@@ -60,20 +75,18 @@ class ControlPanelView extends View
     @button.textContent = 'run-all'
     @row[0].appendChild(@button)
 
-    ###button = new ButtonControlView
-    @row[0].appendChild(button.initialize('from'))
-    button = new ButtonControlView
-    @row[0].appendChild(button.initialize('selected'))
-    ###
+
+
 
   entryClicked: (e) ->
     entry = e.currentTarget
-    switch entry.dataset.name
-      when 'run-from' then @toggleRunFrom()
-      when 'run-selected' then @toggleRunSelected()
-      when 'run-all' then @toggleRunAll()
+    switch entry.dataset.type
+      when 'from' then @toggleRunFrom()
+      when 'selected' then @toggleRunSelected()
+      when 'all' then @toggleRunAll()
 
-    console.log entry
+    console.log e
+    entry.toggle()
 
     false
 

@@ -1,18 +1,22 @@
+{CompositeDisposable} = require 'event-kit'
+
 module.exports =
-  class ButtonControlView extends HTMLElement
+class ButtonControlView extends HTMLElement
+  initialize: (@button) ->
+    @classList.add('entry')
+    @item = document.createElement('button')
+    @dataset.type = @button.type
+    @item.classList.add('inline-block', 'btn')
+    @item.textContent = 'run-' + @button.type
+    @appendChild(@item)
 
-    initialize(type): ->
-      @button = document.createElement('span')
-      @button.classList.add('entry')
-      @button.dataset.name = type
-      @button.textContent = 'run-' + type
-      @appendChild(@button)
+  activate: ->
+    @item.classList.add('btn-success')
 
-    activate: ->
-      @classList.add('active')
+  deactivate: ->
+    @item.classList.remove('btn-success')
 
-    deactivate: ->
-      @classList.remove('active')
+  toggle: ->
+    if @item.classList.contains('btn-success') then @deactivate() else @activate()
 
-    toggle: ->
-      if @classList.contains('active') then @deactivate else @activate
+module.exports = document.registerElement('smartcsv-control-button', prototype: ButtonControlView.prototype, extends: 'span')

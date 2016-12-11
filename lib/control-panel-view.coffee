@@ -86,6 +86,7 @@ class ControlPanelView extends View
       when 'all' then @toggleRunAll()
 
     console.log e
+    console.log e.currentTarget
     entry.toggle()
 
     false

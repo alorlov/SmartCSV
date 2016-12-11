@@ -63,6 +63,7 @@ module.exports = class Runner
     rawObject = @parseXml(path)
     object = for cell in rawObject.cells.cell
       res =
+        id: cell.id[0],
         type: cell.type[0],
         row: cell.row[0] * 1,
         column: cell.col[0] * 1,

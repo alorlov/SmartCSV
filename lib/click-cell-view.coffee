@@ -2,6 +2,4 @@
 CellView = require './cell-view'
 
 module.exports =
-class ClickCellView extends CellView
-  constructor: () ->
-    super
+class ClickCellView extends CellView ->

@@ -9,11 +9,11 @@ class CellView extends HTMLElement
     #@draggable = true
 
     @classList.add('file', 'entry', 'list-item')
-
-    @fileName = document.createElement('span')
-    @fileName.classList.add('name', 'icon')
-    @appendChild(@fileName)
-    @fileName.textContent = @cell.name
+    @id = 'cell_' + @cell.id
+    @item = document.createElement('span')
+    @item.classList.add('name', 'icon')
+    @appendChild(@item)
+    @item.textContent = @cell.name
     @row = @cell.row
 
   getCell: ->

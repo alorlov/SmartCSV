@@ -121,7 +121,15 @@ class ReportView extends ResizableView
         else cell = new Cell(params); view = new CellView()
 
       view.initialize(cell)
-      @list[0].appendChild(view)
+
+      existRows = @list.children('#' + view.id)
+      console.log existRows
+      console.log view.item
+
+      if existRows.last()?[0]
+        existRows.html(view.item)
+      else
+        @list[0].appendChild(view)
     view
 
   setModel: (@csvEditor) ->

@@ -3,8 +3,7 @@
 _ = require 'underscore-plus'
 ButtonControl = require './button-control'
 ButtonControlView = require './button-control-view'
-Cell = require './cell'
-CellView = require './cell-view'
+
 module.exports =
 class ControlPanelView extends View
   panel: null

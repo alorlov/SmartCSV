@@ -10,3 +10,7 @@
 'atom-workspace':
   'cmd-alt-n': 'smartcsv:toggle'
   'f5' : 'smartcsv:run-from'
+  'ctrl-insert': 'tablr:insert-row-before'
+  'ctrl-delete': 'tablr:delete-row'
+  'ctrl-alt-insert': 'tablr:insert-column-after'
+  'ctrl-alt-delete': 'tablr:delete-column'

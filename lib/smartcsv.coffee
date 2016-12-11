@@ -3,7 +3,6 @@ ReportView = require './report-view'
 Runner = require './runner'
 ControlPanelView = require './control-panel-view'
 controlView = null
-path = require 'path'
 
 module.exports = Smartcsv =
 
@@ -13,17 +12,11 @@ module.exports = Smartcsv =
   activate: (state) ->
     CompositeDisposable ?= require('atom').CompositeDisposable
     #CSVConfig ?= require './csv-config'
-    console.log state
+
     #@csvConfig = new CSVConfig(csvConfig)
     @subscriptions = new CompositeDisposable
     @reportView = new ReportView state.reportViewState
     controlView = new ControlPanelView(new Runner(@reportView))
-
-
-    #Watcher = require 'node-pathwatcher'
-    #Watcher.watch 'D:\\Projects\\Work\\elite\\logs\\reports\\100.xml', ('change', path) ->
-    #Watcher.watch c, (a,b) ->
-    #    console.log path + ' is changed.'
 
     @subscriptions.add atom.workspace.addOpener (uriToOpen) =>
       extensions = atom.config.get('tablr.supportedCsvExtensions') ? ['csv', 'tsv', 'CSV', 'TSV']
@@ -33,7 +26,8 @@ module.exports = Smartcsv =
       _ ?= require 'underscore-plus'
 
       #choice = @csvConfig.get(uriToOpen, 'choice')
-      options = {}#_.clone(@csvConfig.get(uriToOpen, 'options') ? {})
+      #options = _.clone(@csvConfig.get(uriToOpen, 'options') ? {})
+      options = {}
       choice = "TableEditor"
       csvEditor = new CSVEditor({filePath: uriToOpen, options, choice})
       @reportView.setModel(csvEditor)

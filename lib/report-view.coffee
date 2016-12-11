@@ -5,12 +5,12 @@ TagGenerator = require './tag-generator'
 {$, View} = require 'atom-space-pen-views'
 # models
 Cell = require './cell'
-ClickCell = require './click-cell'
-CheckCell = require './check-cell'
+#ClickCell = require './click-cell'
+#CheckCell = require './check-cell'
 # views
 CellView = require './cell-view'
-ClickCellView = require './click-cell-view'
-CheckCellView = require './check-cell-view'
+#ClickCellView = require './click-cell-view'
+#CheckCellView = require './check-cell-view'
 
 module.exports =
 class ReportView extends ResizableView

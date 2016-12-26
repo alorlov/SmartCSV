@@ -42,6 +42,8 @@ module.exports = Smartcsv =
       console.log @reportView
       csvEditor
 
+
+
   deactivate: ->
     @reportView.destroy()
 

@@ -1,10 +1,12 @@
+{CompositeDisposable, Emitter} = require 'event-kit'
 _ = require 'underscore-plus'
 $$ = fs = _s = Q = null
 ResizableView = require './resizable-view'
 TagGenerator = require './tag-generator'
 {$, View} = require 'atom-space-pen-views'
-Cell = require './cell'
-CellView = require './cell-view'
+Cell = require './cells/cell'
+CellView = require './cells/cell-view'
+CheckCellView = require './cells/check-cell-view'
 
 module.exports =
 class ReportView extends ResizableView
@@ -19,6 +21,8 @@ class ReportView extends ResizableView
     @roots = []
     @firstRow = null
 
+    @subscriptions = new CompositeDisposable()
+
     #@showOnRightSide = atom.config.get('coff.showOnRightSide')
     atom.config.onDidChange 'smartcsv.showOnRightSide', ({newValue}) =>
       @onSideToggled(newValue)
@@ -27,6 +31,7 @@ class ReportView extends ResizableView
 
     activePane = atom.workspace.getActivePane()
     @setModel activePane.activeItem if activePane
+
     atom.workspace.onDidChangeActivePaneItem (item) =>
       @setModel activePane.activeItem
       console.log item
@@ -108,10 +113,10 @@ class ReportView extends ResizableView
     #@subscriptions = new CompositeDisposable
     #@subscriptions.add @csvEditor.editor.onDidChangeCursorPosition({newPosition, oldPosition}) =>
     #  alert(33)
-
+    lastID = 0
     @roots = for params in object
       switch params.type
-        when 'click' then cell = new Cell(params); view = new CellView()
+        when 'check' then cell = new Cell(params); view = new CheckCellView()
         else cell = new Cell(params); view = new CellView()
 
       view.initialize(cell)
@@ -124,9 +129,37 @@ class ReportView extends ResizableView
         existRows.html(view.item)
       else
         @list[0].appendChild(view)
-    view
+      lastID = view.id
+      view
+    lastID
 
   setModel: (@csvEditor) ->
+    ###csvEditor = @csvEditor
+
+    @subscriptions.add @csvEditor.onDidOpen () =>
+      table = csvEditor.editor.getTable()
+
+      #@subscriptions.add csvEditor.editor.onDidChangeModified () =>
+      #  console.log 'updated'
+        #csvEditor.editor.displayTable.updateScreenRows()
+
+      columns = csvEditor.editor.getScreenColumns()
+      for column in columns
+        column.cellRender = (cell, position) ->
+          isCase = table.getValueAtPosition [position[0], 0]
+          isVar = table.getValueAtPosition [position[0], 2]
+          if isCase != '' and isCase != '-'
+            console.log 1,isCase, isVar, position
+            "<div style='color: yellow'>#{cell.value}</div>"
+          else if isVar != ''
+            console.log 2,isCase, isVar, position
+            "<div style='color: green'>#{cell.value}</div>"
+          else
+            console.log 3,isCase, isVar, position
+            "#{cell.value}"
+    ###
+  save: ->
+    @csvEditor.editor.save()
 
   splitRangesToRows:  ->
     ranges = @csvEditor.editor.getSelectedRanges()

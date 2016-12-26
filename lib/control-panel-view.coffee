@@ -1,4 +1,4 @@
-{CompositeDisposable} = require 'event-kit'
+{CompositeDisposable, Emitter} = require 'event-kit'
 {$, View} = require 'atom-space-pen-views'
 _ = require 'underscore-plus'
 ButtonControl = require './button-control'

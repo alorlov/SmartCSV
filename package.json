@@ -2,12 +2,12 @@
   "configSchema": {
     "storageDir": {
       "type": "string",
-      "default": "d:/Projects/Work/elite/logs/reports/",
+      "default": "c:/elite/logs/reports/",
       "title": "Directory for storing command files"
     },
     "scenariosDir": {
       "type": "string",
-      "default": "d:/Projects/Work/elite/TestScenarios/",
+      "default": "c:/elite/TestScenarios/",
       "title": "Directory for storing command files"
     },
     "showOnRightSide": {

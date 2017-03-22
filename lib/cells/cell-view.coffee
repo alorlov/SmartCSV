@@ -46,4 +46,4 @@ class CellView extends HTMLElement
   getCell: ->
     @row
 
-module.exports = document.registerElement('smartcsv-view-cell', prototype: CellView.prototype)
+module.exports = document.registerElement('smartcsv-view-cell', prototype: CellView.prototype, extends: 'div')

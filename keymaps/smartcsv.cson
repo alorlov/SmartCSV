@@ -9,8 +9,12 @@
 # https://atom.io/docs/latest/advanced/keymaps
 'atom-workspace':
   'cmd-alt-n': 'smartcsv:toggle'
-  'f5' : 'smartcsv:run-from'
+  'f5' : 'smartcsv:run-selected'
+  'ctrl-f5' : 'smartcsv:run-from'
+  'cmd-f5' : 'smartcsv:run-from'
+
   'ctrl-insert': 'tablr:insert-row-before'
   'ctrl-delete': 'tablr:delete-row'
   'ctrl-alt-insert': 'tablr:insert-column-after'
   'ctrl-alt-delete': 'tablr:delete-column'
+  'cmd-alt-delete': 'tablr:delete-column'

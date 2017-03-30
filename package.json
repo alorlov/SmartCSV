@@ -1,14 +1,30 @@
 {
   "configSchema": {
-    "storageDir": {
-      "type": "string",
-      "default": "c:/elite/logs/reports/",
-      "title": "Directory for storing command files"
+    "db": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string",
+          "default": "10.44.116.9"
+        },
+        "user": {
+          "type": "string",
+          "default": "root"
+        },
+        "password": {
+          "type": "string",
+          "default": ""
+        },
+        "database": {
+          "type": "string",
+          "default": "eliteconnect"
+        }
+      }
     },
-    "scenariosDir": {
+    "projectPath": {
       "type": "string",
-      "default": "c:/elite/TestScenarios/",
-      "title": "Directory for storing command files"
+      "default": "c:/elite",
+      "title": "Project directory"
     },
     "showOnRightSide": {
       "type": "boolean",
@@ -46,7 +62,6 @@
   "main": "./lib/smartcsv",
   "name": "smartcsv",
   "optionalDependencies": {},
-  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alorlov/smartcsv.git"

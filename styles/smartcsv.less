@@ -14,11 +14,53 @@
 }
 
 #smartcsv {
+	.column-color-1 {	color: @ui-site-color-5;	}
+	.column-color-2 {	color: @ui-site-color-1;	}
+	.column-color-3 {	color: @ui-site-color-3;	}
+	.column-color-4 {	color: @ui-site-color-2;	}
+	.column-color-0 {	color: @ui-site-color-4;	}
+
+	.group-list {
+	}
 	.list-item {
+
+		display: relative;
+		&.report-case-new {
+			background-color: @text-color-warning;
+		}
 		.failed {
+			color: @text-color-error;
+		}
+		.num {
+			display: inline-block;
+			width: 50px;
+			height: 100%;
+			text-align: right;
+			//color: @background-color-highlight;
+			font-weight: 500;
+			padding: 1px 5px;
+			white-space: nowrap;
+		}
+		.name {
+			display: absolute;
+			left: 0;
+			padding: 1px 3px;
+			padding-left: 10px;
+		}
+		//background-color: @text-color-subtle;
+		//border: 1px solid @text-color-warning;
+		&:nth-child(odd) {
+			background-color: @app-background-color;
+		}
+		&:before {
+			width: 18px;
+			//height: 18px;
+
+			//background-color: @text-color-warning;
 			color: @text-color-error
 		}
 	}
+
 }
 
 #runner {

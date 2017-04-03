@@ -18,7 +18,7 @@
 	.column-color-2 {	color: @ui-site-color-1;	}
 	.column-color-3 {	color: @ui-site-color-3;	}
 	.column-color-4 {	color: @ui-site-color-2;	}
-	.column-color-0 {	color: @ui-site-color-4;	}
+	.column-color-5 {	color: @ui-site-color-4;	}
 
 	.group-list {
 	}
@@ -26,14 +26,22 @@
 
 		display: relative;
 		&.report-case-new {
-			background-color: @text-color-warning;
+			margin-top: 20px;
+			padding: 5px 0px;
+			background-color: @text-color-highlight;
+			color: @app-background-color;
+			text-size: 1.2em;
+			font-weight: 500;
+			.num {
+				display: none;
+			}
 		}
 		.failed {
 			color: @text-color-error;
 		}
 		.num {
 			display: inline-block;
-			width: 50px;
+			width: 20px;
 			height: 100%;
 			text-align: right;
 			//color: @background-color-highlight;
@@ -46,11 +54,29 @@
 			left: 0;
 			padding: 1px 3px;
 			padding-left: 10px;
+			.actual {
+				padding-left: 2px;
+			}
+			table {
+				width: 100%;
+				tr {
+					&:nth-child(odd){
+						background: @background-color-highlight;
+					}
+					&:nth-child(even){
+						background: @background-color-selected;
+					}
+				}
+				td {
+					vertical-align: top;
+					padding: 2px 4px;
+				}
+			}
 		}
 		//background-color: @text-color-subtle;
 		//border: 1px solid @text-color-warning;
-		&:nth-child(odd) {
-			background-color: @app-background-color;
+		/*&:nth-child(odd) {
+			//background-color: @app-background-color;
 		}
 		&:before {
 			width: 18px;
@@ -58,7 +84,7 @@
 
 			//background-color: @text-color-warning;
 			color: @text-color-error
-		}
+		}*/
 	}
 
 }

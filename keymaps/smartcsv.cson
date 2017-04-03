@@ -12,6 +12,7 @@
   'f5' : 'smartcsv:run-selected'
   'ctrl-f5' : 'smartcsv:run-from'
   'cmd-f5' : 'smartcsv:run-from'
+  'f6' : 'smartcsv:toggle-report'
 
   'ctrl-insert': 'tablr:insert-row-before'
   'ctrl-delete': 'tablr:delete-row'

@@ -23,7 +23,7 @@
     },
     "projectPath": {
       "type": "string",
-      "default": "c:/elite",
+      "default": "C:/elite",
       "title": "Project directory"
     },
     "showOnRightSide": {

@@ -10,7 +10,7 @@
 'atom-workspace':
   'cmd-alt-n': 'smartcsv:toggle'
   'f5' : 'smartcsv:run-selected'
-  'ctrl-f5' : 'smartcsv:run-from'
+  'f8' : 'smartcsv:run-from'
   'cmd-f5' : 'smartcsv:run-from'
   'f6' : 'smartcsv:toggle-report'
 

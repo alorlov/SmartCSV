@@ -52,20 +52,20 @@
     "underscore.string": "*",
     "xml-to-js": "*"
   },
-  "description": "Framework for UI automation language",
   "devDependencies": {},
   "engines": {
-    "atom": ">=0.186.0 <2.0.0"
+    "atom": ">=1.0.0 <2.0.0"
   },
   "homepage": "https://github.com/alorlov/smartcsv#readme",
   "license": "MIT",
   "main": "./lib/smartcsv",
   "name": "smartcsv",
+  "description": "Framework for UI automation language",
   "optionalDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alorlov/smartcsv.git"
   },
-  "version": "0.0.18"
+  "version": "1.0.0"
 
 }

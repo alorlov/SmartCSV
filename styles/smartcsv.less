@@ -6,8 +6,19 @@
 @import "resizable-view";
 
 tablr-editor {
+	.syntax--bold {
+		font-weight: bold;
+	}
+	.syntax--default {
+		text-decoration: underline;
+	}
+	.syntax--temporary {
+		font-style: italic;
+	}
+	.release-passed { color: @text-color-success }
+	.release-failed { color: @text-color-error }
 	.passed {
-		/*&:before {
+		&:before {
 			content: '';
 	    position: absolute;
 	    left: 0;
@@ -15,11 +26,20 @@ tablr-editor {
 	    //right: 0;
 	    bottom: 0;
 	    border: 1px solid  @text-color-success;
-		}*/
-		color: @text-color-success
+		}
+		//color: @text-color-success
 	}
 	.failed {
-		color: @text-color-error
+		&:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			//right: 0;
+			bottom: 0;
+			border: 1px solid  @text-color-error;
+		}
+		//color: @text-color-error
 	}
 }
 

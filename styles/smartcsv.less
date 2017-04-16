@@ -6,11 +6,17 @@
 @import "resizable-view";
 
 tablr-editor {
+	.active {
+		z-index: 1000 !important;
+	}
+	* {
+    z-index: 1
+  }
 	.syntax--bold {
 		font-weight: bold;
 	}
 	.syntax--default {
-		text-decoration: underline;
+		//text-decoration: underline;
 	}
 	.syntax--temporary {
 		font-style: italic;

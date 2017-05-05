@@ -56,15 +56,15 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "homepage": "https://github.com/alorlov/smartcsv#readme",
+  "homepage": "https://github.com/alorlov/elitecsv#readme",
   "license": "MIT",
-  "main": "./lib/smartcsv",
-  "name": "smartcsv",
+  "main": "./lib/elitecsv",
+  "name": "elitecsv",
   "description": "Framework for UI automation language",
   "optionalDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alorlov/smartcsv.git"
+    "url": "git+https://github.com/alorlov/elitecsv.git"
   },
   "version": "1.0.0"
 

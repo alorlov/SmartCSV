@@ -8,11 +8,11 @@
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
 'atom-workspace':
-  'cmd-alt-n': 'smartcsv:toggle'
-  'f5' : 'smartcsv:run-selected'
-  'f8' : 'smartcsv:run-from'
-  'cmd-f5' : 'smartcsv:run-from'
-  'f6' : 'smartcsv:toggle-report'
+  'cmd-alt-n': 'elitecsv:toggle'
+  'f5' : 'elitecsv:run-selected'
+  'f8' : 'elitecsv:run-from'
+  'cmd-f5' : 'elitecsv:run-from'
+  'f6' : 'elitecsv:toggle-report'
 
   'ctrl-insert': 'tablr:insert-row-before'
   'ctrl-delete': 'tablr:delete-row'

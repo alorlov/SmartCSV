@@ -21,4 +21,4 @@
   'cmd-alt-delete': 'tablr:delete-column'
 
 '.select-list atom-text-editor[mini]':
-  "ctrl-enter": "elitecsv:confirmWith"
+  "ctrl-enter": "elitecsv:confirm-with"

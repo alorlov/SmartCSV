@@ -9,6 +9,7 @@
 # https://atom.io/docs/latest/advanced/keymaps
 'atom-workspace':
   'cmd-alt-n': 'elitecsv:toggle'
+  'f5' : 'elitecsv:run-selected'
   'f9' : 'elitecsv:run-selected'
   'f8' : 'elitecsv:run-from'
   'cmd-f9' : 'elitecsv:run-from'

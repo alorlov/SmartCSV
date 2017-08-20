@@ -1,48 +1,51 @@
 @import "ui-variables";
 
-// Highlight matched text
-.elitecsv-palette .list-group .character-match {
-  color: @text-color-info;
-  font-weight: bold;
-}
-
 .elitecsv-palette {
   margin-top: 30px;
-  //max-height: 500px;
-}
-.elitecsv-palette .list-group {
-  //max-height: 500px;
-  li {
-    white-space: normal;
-  }
-  div{
-    &.left, &.right{
-      display: inline-block;
+
+  .list-group {
+    background-color: @base-background-color;
+    box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.3);
+    padding: 0.375em;
+    border-radius: 3px;
+
+    // Highlight matched text
+    .character-match {
+      color: @text-color-info;
+      font-weight: bold;
     }
-  }
+    li {
+      white-space: normal;
+    }
+    div{
+      &.left, &.right{
+        display: inline-block;
+      }
+    }
 
-  .left {
-    width: 50%;
-    text-align: left;
-  }
-  .right {
-    width: 50%;
-    vertical-align: top;
-    text-align: right;
-  }
+    .left {
+      width: 50%;
+      text-align: left;
+    }
+    .right {
+      width: 50%;
+      vertical-align: top;
+      text-align: right;
+    }
 
 
-  .block0, .block1, .block2, .block3 {
-    display: inline-block;
-    margin-right: 5px;
+    .block0, .block1, .block2, .block3 {
+      display: inline-block;
+      margin-right: 5px;
 
-    .item {
-      font-weight: normal;
-      font-size: 0.9em;
-      background: @button-background-color;
-      border-radius: 3px;
-      padding: 2px 4px;
-      margin-left: 5px;
+      .item {
+        font-weight: normal;
+        font-size: 0.9em;
+        background: @button-background-color;
+        border-radius: 3px;
+        padding: 2px 4px;
+        margin-left: 5px;
+      }
     }
   }
 
@@ -57,4 +60,5 @@
   .block3 {
     color: @text-color-warning;
   }
+
 }

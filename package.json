@@ -340,7 +340,7 @@
   },
   "homepage": "https://github.com/alorlov/elitecsv#readme",
   "license": "MIT",
-  "main": "./lib/elitecsv",
+  "main": "./lib/main",
   "name": "elitecsv",
   "description": "Framework for UI automation language",
   "optionalDependencies": {},

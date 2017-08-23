@@ -5,10 +5,17 @@
 @import "ui-variables";
 @import "resizable-view";
 
+atom-text-editor {
+	.cursors {
+		z-index: 1000 !important;
+	}
+}
+
 tablr-editor {
 	.active {
 		z-index: 1000 !important;
 	}
+
 	* {
     z-index: 1
   }

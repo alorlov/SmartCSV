@@ -332,7 +332,8 @@
     "CSVEditor": "deserializeCSVEditor",
     "TableEditor": "deserializeTableEditor",
     "DisplayTable": "deserializeDisplayTable",
-    "Table": "deserializeTable"
+    "Table": "deserializeTable",
+    "EliteCSV": "deserializeEliteCSV"
   },
   "devDependencies": {},
   "engines": {
@@ -378,7 +379,8 @@
   },
   "version": "1.0.0",
   "viewProviders": [
-    "tablrViewProvider"
+    "tablrViewProvider",
+    "eliteViewProvider"
   ]
 
 }

@@ -1,13 +1,21 @@
 @import "ui-variables";
 
 .elitecsv-palette {
-  margin-top: 30px;
+  // margin-top: 30px;
+  atom-text-editor {
+    display: none;
+  }
 
-  .list-group {
+  > div{
+    background-color: @base-background-color;
     background-color: @base-background-color;
     box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.3);
-    padding: 0.375em;
+    // padding: 0.375em;
     border-radius: 3px;
+  }
+
+  .list-group {
+    margin: 0px !important;
 
     // Highlight matched text
     .character-match {
@@ -15,6 +23,7 @@
       font-weight: bold;
     }
     li {
+      padding-left: 0.5em;
       white-space: normal;
     }
     div{
@@ -47,6 +56,10 @@
         margin-left: 5px;
       }
     }
+  }
+
+  .block0 {
+    white-space: nowrap;
   }
 
   .block1 {

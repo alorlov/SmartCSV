@@ -89,7 +89,27 @@ tablr-editor {
 	}
 }
 
+status-bar {
+	.threads {
+		// width: 100px;
+		// height: 100px;
+		z-index:1000;
+		position: fixed;
+		bottom: 40px;
+		left: 350px;
+		// background: grey;
+	}
+
+	.thread {
+		width: 150px;
+		height: 100px;
+		background: blue;
+		float: left;
+		margin-left: 5px;
+	}
+}
 #elitecsv {
+
 	.column-color-1 {	color: @ui-site-color-5;	}
 	.column-color-2 {	color: @ui-site-color-1;	}
 	.column-color-3 {	color: @ui-site-color-3;	}
@@ -99,8 +119,10 @@ tablr-editor {
 	.throbber {
 		margin: 22px 117px;
 	}
+
 	.group-list {
 	}
+
 	.list-item {
 
 		display: relative;

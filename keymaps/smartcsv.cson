@@ -12,6 +12,8 @@
   'f9' : 'elitecsv:run-selected'
   'ctrl-f9' : 'elitecsv:run-from'
   'f6' : 'elitecsv:toggle-report'
+  'f8' : 'elitecsv:thread-run-selected'
+  'ctrl-f8' : 'elitecsv:thread-run-from'
 
   'ctrl-insert': 'tablr:insert-row-before'
   'ctrl-delete': 'tablr:delete-row'

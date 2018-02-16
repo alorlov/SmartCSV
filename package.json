@@ -311,6 +311,7 @@
   "dependencies": {
     "atom-space-pen-views": "^2.0.0",
     "atom-utils": "0.9.x",
+    "chokidar": "^2.0.2",
     "coffee-script": "1.7.x",
     "csv": "~0.4.5",
     "delegato": "1.x",

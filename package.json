@@ -30,7 +30,6 @@
       "type": "boolean",
       "default": true
     },
-
     "tablr": {
       "type": "object",
       "properties": {
@@ -290,18 +289,17 @@
           "default": false
         },
         "defaultColumnNamingMethod": {
-        "type": "string",
-        "default": "alphabetic",
-        "enum": [
-          "alphabetic",
-          "numeric",
-          "numericZeroBased"
-        ],
-        "description": "When file has no header, select the default naming method for the columns. `alphabetic` means use A, B,…, Z, AA, AB… `numeric` is for simple numbers, ie 1, 2… `numericZeroBased` is similar to `numeric`, except that it starts numbering from 0 instead of 1"
-      }
+          "type": "string",
+          "default": "alphabetic",
+          "enum": [
+            "alphabetic",
+            "numeric",
+            "numericZeroBased"
+          ],
+          "description": "When file has no header, select the default naming method for the columns. `alphabetic` means use A, B,…, Z, AA, AB… `numeric` is for simple numbers, ie 1, 2… `numericZeroBased` is similar to `numeric`, except that it starts numbering from 0 instead of 1"
+        }
       }
     }
-
   },
   "consumedServices": {
     "status-bar": {
@@ -312,21 +310,23 @@
   },
   "dependencies": {
     "atom-space-pen-views": "^2.0.0",
-    "fs-plus": "^2.3.0",
-    "pathwatcher": "*",
-    "q": "^1.0.1",
-    "underscore.string": "*",
-    "xml-to-js": "*",
-
     "atom-utils": "0.9.x",
     "coffee-script": "1.7.x",
     "csv": "~0.4.5",
     "delegato": "1.x",
     "element-resize-detector": "^1.1.11",
+    "express": "^4.16.2",
+    "fs-plus": "^2.3.0",
     "iconv-lite": "~0.4.4",
+    "jstree": "^3.3.5",
     "mixto": "1.x",
+    "mysql": "^2.15.0",
+    "pathwatcher": "*",
     "property-accessors": "1.x",
-    "underscore-plus": "^1"
+    "q": "^1.0.1",
+    "underscore-plus": "^1",
+    "underscore.string": "*",
+    "xml-to-js": "*"
   },
   "deserializers": {
     "CSVEditor": "deserializeCSVEditor",
@@ -382,5 +382,4 @@
     "tablrViewProvider",
     "eliteViewProvider"
   ]
-
 }

@@ -107,30 +107,57 @@ status-bar {
 	}
 
 	.thread {
-		width: 150px;
-		height: 100px;
-		background: blue;
+		width: 180px;
+		border: 1px solid @text-color-subtle;
+		background: @background-color-highlight;
 		float: left;
 		margin-left: 5px;
 
 	  display: grid;
-	  grid-template-columns: auto 1fr;
+	  grid-template-columns: auto auto;
 	  grid-template-rows: auto auto auto;
 
-		.users    { grid-row: 1; grid-column: 1 / span 2 }
-		.report   { grid-row: 2; grid-column: 1 / span 2 }
-		.progress { grid-row: 3; grid-column: 1 }
-		.controls { grid-row: 3; grid-column: 2; justify-self: center }
+		// .users    { grid-row: 1; grid-column: 1 / span 2 }
+		// .report   { grid-row: 2; grid-column: 1 / span 2 }
+		// .progress { grid-row: 3; grid-column: 1 }
+		// .controls { grid-row: 3; grid-column: 2; justify-self: center }
 		// .active   { grid-row: 3; grid-column: 2; }
 
+		.users    { grid-row: 1; grid-column: 1 / span 2;
+		 	background: @base-background-color;}
+		.report   { grid-row: 2; grid-column: 1;
+			width: 150px; height: 100px;}
+		// .progress { grid-row: 3; grid-column: 1 }
+		.controls { grid-row: 2; grid-column: 2;
+			width: 30px }
+
+		.user{
+
+			padding-right: 0;
+			float: left;
+
+			.user-remove {
+				padding: 0px 3px;
+    		margin-left: 5px;
+			}
+		}
 		.report {
-			height: 50px;
-			background: green;
+			height: 100px;
+			padding: 5px;
 			overflow-y: auto;
 
 			div {
-				line-height: 110%
+				line-height: 125%
 			}
+		}
+		.controls button{
+			float: left;
+			width: 30px;
+		}
+
+		&.active {
+			background: @background-color-selected;
+			border: 2px solid @text-color-success;
 		}
 	}
 

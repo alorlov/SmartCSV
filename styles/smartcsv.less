@@ -153,6 +153,10 @@ status-bar {
 		.controls button{
 			float: left;
 			width: 30px;
+
+			&.play { background: @background-color-success }
+			&.pause { background: @background-color-warning }
+			&.stop { background: @background-color-error }
 		}
 
 		&.active {
